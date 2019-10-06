@@ -1,0 +1,163 @@
+section.top-bar {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  width: 100%;
+}
+
+p {
+  font-family: 'Merriweather', serif;
+}
+
+.flex-col {
+  height: 720px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.middle-col {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 25px 0 25px;
+}
+
+.li-desc:hover {
+  background-color: rgba(150, 150, 150, 0.2);
+}
+
+#map-panel {
+  height: 500px;
+  /* background-color: red; */
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.back {
+  border: 1px solid black;
+  width: 80px;
+}
+.back:hover {
+  background-color: rgba(150, 150, 150, 0.2);
+}
+
+.col-250 {
+  /* display: flex;
+  flex-direction: column; */
+  /* height: 100%; */
+  width: 250px;
+}
+
+.flex-row {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flex-row p {
+  width: 600px;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+div img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.white-text {
+  color: black;
+}
+.grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(60px,200px));
+}
+
+.translate-up {
+  transform: translateY(-15px);
+}
+
+.nav-button {
+  height: 25px;
+  width: 160px;
+  border: solid 1px;
+  text-align: center;
+  display: block;
+}
+
+.word-link {
+  display: inline-block;
+}
+.word-link:hover {
+	animation: color_change 0.5s;
+  animation-fill-mode: forwards;
+}
+@keyframes color_change {
+	from { background-color: none; }
+	to { background-color: rgba(170, 240, 170, 0.5); }
+}
+
+.transform-top-left {
+  position: absolute;
+  transform: translateX(-320px) rotate(-45deg);
+}
+.transform-top-right {
+  position: absolute;
+  transform: translateX(320px) rotate(45deg);
+}
+.transform-bottom-right {
+  position: absolute;
+  transform: translateY(405px) translateX(320px) rotate(-45deg);
+}
+.transform-bottom-left {
+  position: absolute;
+  transform: translateY(405px) translateX(-320px) rotate(45deg);
+}
+
+.flip-color:hover {
+  cursor: crosshair;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.lemon {
+  background-color: rgba(255, 220, 20, 0.6);
+}
+.kiwi {
+  background-color: rgba(170, 240, 170, 0.5);
+}
+.bubblegum {
+  background-color: rgba(240, 170, 170, 0.5);
+}
+.graphite {
+  background-color: rgba(40, 40, 40, 0.2);
+}
+.red {
+  background-color: rgb(234, 51, 35, 0.2);
+}
+.blue {
+  background-color: rgb(35, 51, 234, 0.2);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.container-media {
+  height: 480px;
+  width: 640px;
+}
+
+.container-media img {
+  align-self: center;
+  width: 100%;
+  height: auto;
+}
