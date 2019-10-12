@@ -23,10 +23,8 @@
       A large portion are cafes and restaurants. But sprinkled here and there are parks and other random locations.
     </p>
   </div>
-  <div class="flex-row">
-    <span id="focused-country" style="display: none; font-size: 24px; font-family: 'Oswald', sans-serif;">
-    </span>
-  </div>
+  <span id="focused-country" style="display: none; font-size: 24px; font-family: 'Oswald', sans-serif;">
+  </span>
   <div class="countries grid white-text">
     <div class="red">Japan</div>
     <div class="blue">Korea</div>
@@ -116,18 +114,18 @@ crossorigin="">
 
   const zoomToPlace = (e) => {
     const title = e.target.innerHTML;
-    let places = [];
+    const currCountry = document.getElementById('focused-country').innerHTML;
+    const mappings = locMap.get(countryMapping[currCountry]);
 
-    const countries = document.getElementsByClassName("countries")
-    Object.entries(countries[0].children).forEach(country => {
-      if(country[1].className.indexOf("translate-up") !== -1) {
-        places = [locMap.get(countryMapping[country[1].innerHTML])];
-      }
-    })
-
-    if(places.length > 0) {
-      const place = places.find(title);
-      console.log(place);
+    if(mappings.places && mappings.places.length > 0) {
+      const place = mappings.places.find(place => {
+        return place.title === title;
+      });
+      const popup = L.popup({maxWidth: 'auto'})
+        .setLatLng({...place.coords})
+        .setContent(`<p>${place.addr}</p>`)
+        .openOn(mymap);
+      mymap.panTo({...place.coords});
     }
   }
 
@@ -159,6 +157,8 @@ crossorigin="">
         li.appendChild(document.createTextNode(place.title));
         listEl.appendChild(li);
       }
+
+      document.getElementById('focused-country').innerHTML = target;
     }
   }
   zoomToCountry({target: {innerHTML: "Japan"}});
