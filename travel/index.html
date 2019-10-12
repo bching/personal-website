@@ -86,7 +86,13 @@ crossorigin="">
 
       if(countryCode) {
         if(!locMap.has(countryCode)) {
-          locMap.set(countryCode, {coords, places: [place.properties.Title]});
+          locMap.set(countryCode, {coords, places: [
+            {
+              title: place.properties.Title,
+              coords,
+              addr: place.properties.Location.Address ? place.properties.Location.Address : null
+            }
+          ]});
           continue;
         }
         const countrySpecs = locMap.get(countryCode);
@@ -102,7 +108,6 @@ crossorigin="">
           }
         );
         locMap.set(countryCode, countrySpecs);
-        continue;
       }
     }
   }
@@ -146,6 +151,7 @@ crossorigin="">
         }
       })
       const listEl = document.getElementById("place-list");
+      listEl.innerHTML = "";
       for(const place of loc.places) {
         const li = document.createElement("li");
         li.className = "li-desc";
