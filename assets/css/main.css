@@ -9,7 +9,7 @@ p {
   font-family: 'Merriweather', serif;
 }
 
-.flex-col {
+.content-section {
   height: 720px;
   width: 100%;
   display: flex;
