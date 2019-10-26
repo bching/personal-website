@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BYCHING</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <style>
+    #map {
+      height: 500px;
+      width: 60%;
+      margin: 0 0 0 15px;
+    }
+    </style>
+    <script type="text/javascript" src="assets/data/places.json"></script>
+  </head>
+
+  <body>
+    <section class="top-bar">
+      <h1>
+        BOYD
+      </h1>
+    </section>
+    <section class="content-section">
+      <div id="nav" class="flex-row flex-center">
+        <a href="#job" class="nav-button transform-top-left flip-color kiwi">
+          Work + Contact
+        </a>
+        <a href="#travel" class="nav-button transform-top-right flip-color bubblegum">
+          Travel Map
+        </a>
+        <a href="#activities" class="nav-button transform-bottom-left flip-color graphite">
+          Brag wall
+        </a>
+        <!-- <a href="./notes/index.html" class="nav-button transform-bottom-right flip-color lemon">
+          Notes
+        </a> -->
+      </div>
+      <div class="center-self container-media">
+        <img src="assets/images/self.JPG" />
+      </div>
+      <div class="flex-row flex-center">
+        <p>Somehow you've found yourself to my webpage, welcome!</p>
+      </div>
+      <div class="flex-row flex-center">
+        <p>I am a <a class="word-link" href='https://github.com/bching'>software developer</a>, based in Tokyo, Japan. Aside from building web applications, I also engage in a variety of <a class="word-link" href="./activities/index.html">activities</a></p>
+      </div>
+    </section>
+
+    <div class="line"></div>
+
+    <section id="travel" class="content-section">
+      
+  <div class="flex-row flex-center">
+    <p>
+      This page is a collection of places that left an impression on me.
+      A large portion are cafes and restaurants. But sprinkled around are parks and other random locations.
+    </p>
+  </div>
+  <span id="focused-country" style="display: none; font-size: 24px; font-family: 'Oswald', sans-serif;">
+  </span>
+  <div class="countries grid flex-row flex-center">
+    <div>Japan</div>
+    <div>Korea</div>
+    <div>Thailand</div>
+    <div>Germany</div>
+    <div>Taiwan</div>
+  </div>
+  <div class="flex-row flex-center">
+    <div id="map"></div>
+    <div id="map-panel" class="col-250">
+      <ul id="place-list">
+      </ul>
+    </div>
+  </div>
+
+    </section>
+
+    <div class="line"></div>
+
+    <section id="activities" class="content-section">
+      <div class="middle-col">
+  <div class="grid flex-row flex-center">
+    <div><img src="../assets/gifs/backflip1.gif" /></div>
+    <div><img src="../assets/gifs/graduation-90s.gif" /></div>
+    <div><img src="../assets/gifs/halos.gif" /></div>
+    <div><img src="../assets/gifs/swipe-hollow.gif" /></div>
+  </div>
+</div>
+
+    </section>
+
+    <div class="line"></div>
+
+    <!-- <section class="content-section">
+        <p>
+    Boyd is hungry
+  </p>
+
+    </section> -->
+
+    <section id="job" class="content-section">
+      <div class="middle-col">
+  <div class="back">
+    <a href="./assets/data/boyd-ching-resume-2019.pdf">Here's my resume</a>
+  </div>
+  <ul>
+    <li>Software Developer at AI2 - 2019 Feb ~ current</li>
+    <ul>
+      <li>
+        Fast-paced, active development in a dynamic startup environment in Tokyo. I created several UI components of a bot management web application employed by some of the largest household names. React/Redux/Bootstrap frontend and Express/Sequelize-Postgres backend. Extensive tests with Mocha/Chai.
+      </li>
+    </ul>
+  </ul>
+  <ul>
+    <li>JET Program in Toyama prefecture of Japan - 1 year</li>
+    <ul>
+      <li>
+        English teaching to Japanese elementary and middle schools. This position also helped me develop my language and planning skills while gaining a deeper understanding of international culture.
+      </li>
+    </ul>
+  </ul>
+  <ul>
+    <li>
+      Barabara Construction Assistant Contractor - 1 year
+    </li>
+    <ul>
+      <li>
+        I performed demolition and hazards control towards renovating an Alaskan regional medical center. Assisted in correspondence between the project lead and separate onsite contractors.
+      </li>
+    </ul>
+  </ul>
+  <ul>
+    <li>
+      University of Alaska Anchorage Research Associate - 4 months
+    </li>
+    <ul>
+      <li>
+        I led the development of a prototype web service within 1 month using the PHP Codeigniter web framework.
+      </li>
+      <li>
+        I created the frontend UI (CSS, HTML, Javascript) for accessing API functions of the NLP frameworks: spaCy, NLTK, and CoreNLP.
+      </li>
+      <li>
+        The service can pre-process and classify text files of over 10,000 words. The functions are for filtering stop words, tokenizing text, classifying grammar type, and recognizing named entities.
+      </li>
+    </ul>
+  </ul>
+  <ul>
+    <li>
+      Foreign Languages
+    </li>
+    <ul>
+      <li>
+        Japanese (business level)
+      </li>
+      <li>
+        Korean (conversational proficiency)
+      </li>
+    </ul>
+  </ul>
+</div>
+
+    </section>
+
+    <script
+    src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin="">
+    </script>
+
+  <script>
+  const layerClick = (e) => {
+    console.log(e.target.feature)
+    const title = e.target.feature.properties.Title;
+    const addr = e.target.feature.properties.Location.Address;
+    const coords = {
+      lat: e.target.feature.geometry.coordinates[1],
+      lng: e.target.feature.geometry.coordinates[0]
+    }
+    const popup = L.popup({maxWidth: 'auto'})
+    .setLatLng({...coords})
+    .setContent(`<p>${title}</p><p>${addr}</p>`)
+    .openOn(mymap);
+    mymap.panTo({...coords});
+  }
+  const onEachFeature = (feature, layer) => {
+    layer.on({
+      click: layerClick
+    });
+  }
+  const geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+  };
+
+  var mymap = L.map('map').setView([51.505, -0.09], 13);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYnljaGluZyIsImEiOiJjam9qdDc1c3owMWQzM3FwMDJyZXhlemw4In0.Ui4GCVrEhjWt5ZYcQtBzlg'
+  }).addTo(mymap);
+
+  const locMap = new Map();
+  if(places.features) {
+    for(const place of places.features) {
+      L.geoJSON(place, {
+        onEachFeature: onEachFeature,
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+      }).addTo(mymap);
+      const countryCode = place.properties.Location["Country Code"] || null;
+      const coords = {
+        lat: place.geometry.coordinates[1],
+        lng: place.geometry.coordinates[0]
+      };
+
+      if(countryCode) {
+        if(!locMap.has(countryCode)) {
+          locMap.set(countryCode, {coords, places: [
+            {
+              title: place.properties.Title,
+              coords,
+              addr: place.properties.Location.Address ? place.properties.Location.Address : null
+            }
+          ]});
+          continue;
+        }
+        const countrySpecs = locMap.get(countryCode);
+        const countryCoords = {...countrySpecs.coords};
+        countryCoords.lat = (coords.lat + countryCoords.lat) / 2;
+        countryCoords.lng = (coords.lng + countryCoords.lng) / 2;
+
+        countrySpecs.places.push(
+          {
+            title: place.properties.Title,
+            coords,
+            addr: place.properties.Location.Address ? place.properties.Location.Address : null
+          }
+        );
+        locMap.set(countryCode, countrySpecs);
+      }
+    }
+  }
+
+  const countryMapping = {"Korea": "KR", "Germany": "DE", "Japan": "JP", "Thailand": "TH", "Taiwan": "TW"};
+
+  const zoomToPlace = (e) => {
+    const title = e.target.innerHTML;
+    const currCountry = document.getElementById('focused-country').innerHTML;
+    const mappings = locMap.get(countryMapping[currCountry]);
+
+    if(mappings.places && mappings.places.length > 0) {
+      const place = mappings.places.find(place => {
+        return place.title === title;
+      });
+      const popup = L.popup({maxWidth: 'auto'})
+      .setLatLng({...place.coords})
+      .setContent(`<p>${title}</p><p>${place.addr}</p>`)
+      .openOn(mymap);
+      mymap.panTo({...place.coords});
+    }
+  }
+
+  const zoomToCountry = (e) => {
+    if(e) {
+      let target = "Japan";
+      if(e && e.target) {
+        target = e.target.innerHTML;
+      }
+      const loc = locMap.get(countryMapping[target]);
+      mymap.panTo({...loc.coords});
+
+      const countries = document.getElementsByClassName("countries")
+      Object.entries(countries[0].children).forEach(country => {
+        if(country[1].innerHTML === e.target.innerHTML &&
+          country[1].className.indexOf("expand") === -1) {
+            country[1].className += " expand";
+          }
+          else if(country[1].className.indexOf("expand") !== -1) {
+            country[1].className = country[1].className.replace("expand", "");
+          }
+        })
+        const listEl = document.getElementById("place-list");
+        listEl.innerHTML = "";
+        for(const place of loc.places) {
+          const li = document.createElement("li");
+          li.className = "li-desc";
+          li.onclick = zoomToPlace;
+          li.appendChild(document.createTextNode(place.title));
+          listEl.appendChild(li);
+        }
+
+        document.getElementById('focused-country').innerHTML = target;
+      }
+    }
+    zoomToCountry({target: {innerHTML: "Japan"}});
+    const countries = document.getElementsByClassName("countries");
+    Object.entries(countries[0].children).forEach(country => {country[1].onclick = zoomToCountry})
+
+    // TODO: add smooth scroll
+    //
+    // // Object.entries(document.getElementById('nav').children).forEach(section => console.log(section[1]))
+    // document.querySelectorAll('#nav a').forEach(link => link.onclick = link.scrollIntoView())
+    //
+  </script>
+</body>
+</html>
