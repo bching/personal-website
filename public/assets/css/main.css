@@ -35,7 +35,7 @@ p {
 #map-panel {
   height: 500px;
   /* background-color: red; */
-  overflow: scroll;
+  overflow-y: scroll;
   border: 1px solid black;
 }
 
