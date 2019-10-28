@@ -108,6 +108,12 @@ a, a:visited, a:hover, a:active {
 .countries div {
   margin: 10px;
   transition: outline 500ms;
+  cursor: crosshair;
+  border: 1px dotted black;
+}
+.countries div:hover {
+  animation: color_change 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .expand {
