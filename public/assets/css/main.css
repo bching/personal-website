@@ -19,6 +19,8 @@ p {
 
 .line {
   border-top: 1px solid;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .middle-col {
