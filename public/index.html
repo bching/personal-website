@@ -8,263 +8,262 @@
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
            crossorigin=""/>
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-    <style>
-    #map {
-      height: 500px;
-      width: 60%;
-      margin: 0 0 0 15px;
-    }
-    </style>
     <script type="text/javascript" src="assets/data/places.json"></script>
   </head>
 
-  <body>
-    <section class="top-bar">
-      <h1>
-        BOYD
-      </h1>
-    </section>
-    <section class="content-section">
-      <div id="nav" class="flex-row flex-center">
-        <a href="#job" class="nav-button transform-top-left flip-color kiwi">
-          Work + Contact
-        </a>
-        <a href="#travel" class="nav-button transform-top-right flip-color bubblegum">
-          Travel Map
-        </a>
-        <a href="#activities" class="nav-button transform-bottom-left flip-color graphite">
-          Brag wall
-        </a>
-        <!-- <a href="./notes/index.html" class="nav-button transform-bottom-right flip-color lemon">
-          Notes
-        </a> -->
-      </div>
-      <div class="center-self container-media">
-        <img src="assets/images/self.JPG" />
-      </div>
-      <div class="flex-row flex-center">
-        <p>You've found yourself to my webpage, welcome!</p>
-      </div>
-      <div class="flex-row flex-center">
-        <p>I am a <a class="word-link" href='https://github.com/bching'>software developer</a>, based in Tokyo, Japan. Aside from building web applications, I also engage in a variety of <a class="word-link" href="./activities/index.html">activities</a></p>
-      </div>
-    </section>
+  <body id="bg">
+    <!-- <div class="site-border"></div> -->
+    <header>
+      <!-- B_O_Y_D logo -->
+      <svg width="253" height="51" viewBox="0 0 253 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_d)">
+          <path
+            d="M4 11.912V6.8H46.768V16.7L38.524 19.4L46.768 22.1V32H9.364V11.912H4ZM18.76 26.888H37.372V25.052L30.28 21.956H18.76V26.888ZM18.76 16.844H30.28L37.372 13.748V11.912H18.76V16.844ZM75.2055 32V6.8H112.609V32H75.2055ZM84.6015 26.888H103.213V11.912H84.6015V26.888ZM137.445 11.912V6.8H149.217L159.117 17.276L168.081 6.8H179.133L163.797 24.728V32H154.401V24.26L142.737 11.912H137.445ZM199.996 11.912V6.8H231.244L242.728 12.92V32H205.36V11.912H199.996ZM214.792 26.888H233.368V14.36L228.76 11.912H214.792V26.888Z"
+            fill="#E2DFDF" />
+          <path
+            d="M50.0195 32H71.6195V37.112H50.0195V32ZM116.219 32H137.819V37.112H116.219V32ZM178.41 32H200.01V37.112H178.41V32Z"
+            fill="#D8B608" />
+        </g>
+        <defs>
+          <filter id="filter0_d" x="0" y="6.79999" width="246.728" height="38.312" filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+            <feOffset dy="4" />
+            <feGaussianBlur stdDeviation="2" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+          </filter>
+        </defs>
+      </svg>
+      <nav>
+        <ul>
+          <li><a href="#">Posts</a></li>
+          <li><a href="#">Github</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <div class="line"></div>
-
-    <section id="travel" class="content-section">
-      
-  <div class="flex-row flex-center">
-    <p>
-      This page is a collection of places that left an impression on me.
-      A large portion are cafes and restaurants. But sprinkled around are parks and other random locations.
-    </p>
-  </div>
-  <span id="focused-country" style="display: none; font-size: 24px; font-family: 'Oswald', sans-serif;">
-  </span>
-  <div class="countries grid flex-row flex-center">
-    <div>Japan</div>
-    <div>Korea</div>
-    <div>Thailand</div>
-    <div>Germany</div>
-    <div>Taiwan</div>
-  </div>
-  <div class="flex-row flex-center">
-    <div id="map"></div>
-    <div id="map-panel" class="col-250">
-      <ul id="place-list">
-      </ul>
+    <div id="waves-wrapper">
+      <div id="waves">
+        <svg width="1411" height="168" viewBox="0 0 1411 168" fill="none" preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M368.029 166.645L536.765 83.3226L705.5 0H0L368.029 166.645Z" fill="#454444" />
+          <path d="M1060.21 168L1411 3.05176e-05H705.5L1060.21 168Z" fill="#454444" />
+        </svg>
+      </div>
     </div>
-  </div>
 
-    </section>
+    <div class="max-width-wrapper">
 
-    <div class="line"></div>
+      <!-- Boyd's thoughts -->
+      <div class="fade-in-wrapper">
+        <div class="fade-in-section">
+          <div class="flex-row flex-center">
+            <h1>Inspirational Quote!</h1>
+          </div>
+          <div class="flex-row flex-center">
+            <div class="text-box popper" style="--pop-x: 4px; --pop-y: -4px;">
+              <h2>Inspirational quote here!</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Boyd's skill summary -->
+      <div class="fade-in-wrapper">
+        <div class="fade-in-section">
+          <div class="flex-row flex-center">
+            <h2>Boyd is a...</h1>
+          </div>
+          <div class="flex-row flex-center">
+            <h1><u>Software Developer</u></h1>
+          </div>
+          <div class="flex-row flex-center">
+            <div class="list-wrapper">
+              <div>
+                <h2>Programming Languages</h2>
+                <ul>
+                  <li>Javascript</li>
+                  <li>NodeJS</li>
+                  <li>Typescript</li>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                </ul>
+              </div>
+              <div>
+                <h2>Tools & Libraries</h2>
+                <ul>
+                  <li>ReactJS</li>
+                  <li>Express</li>
+                  <li>Git</li>
+                  <li>Docker</li>
+                  <li>Figma (designed in Figma :)</li>
+                  <li>AWS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <section id="activities" class="content-section">
-      <div class="middle-col">
-  <div class="grid flex-row flex-center">
-    <div><img src="./assets/gifs/backflip1.gif" /></div>
-    <div><img src="./assets/gifs/graduation-90s.gif" /></div>
-    <div><img src="./assets/gifs/halos.gif" /></div>
-    <div><img src="./assets/gifs/swipe-hollow.gif" /></div>
-  </div>
-</div>
+      <!-- Dance Range Slider -->
+      <div class="fade-in-wrapper">
+        <div class="fade-in-section">
+          <div class="flex-row flex-center">
+            <h2>Drag to spin!</h1>
+          </div>
+          <button onclick="execDance()"></button>
+          <div class="flex-row flex-center" style="padding-bottom: 5px;">
+            <input type="range" min="1" max="6" value="1" class="slider" id="img-range">
+          </div>
+          <div class="flex-row flex-center">
+            <canvas id="canvas" class="popper" style="--popX: 0; --popY: -4px;">
+            </canvas>
+          </div>
+        </div>
+      </div>
 
-    </section>
+    </div>
 
-    <div class="line"></div>
+    <script type="text/javascript">
 
-    <!-- <section class="content-section">
-        <p>
-    Boyd is hungry
-  </p>
+      let currImgIndex = 1;
+      let isDancing = false;
+      document.addEventListener("DOMContentLoaded", function () {
 
-    </section> -->
-
-    <section id="job" class="content-section">
-      <div class="middle-col">
-  <div class="back">
-    <a href="./assets/data/boyd-ching-resume-2019.pdf">Here's my resume</a>
-  </div>
-</div>
-
-    </section>
-
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-      crossorigin=""></script>
-
-  <script>
-  const layerClick = (e) => {
-    console.log(e.target.feature)
-    const title = e.target.feature.properties.Title;
-    const addr = e.target.feature.properties.Location.Address;
-    const coords = {
-      lat: e.target.feature.geometry.coordinates[1],
-      lng: e.target.feature.geometry.coordinates[0]
-    }
-    const popup = L.popup({minWidth: '50px'})
-    .setLatLng({...coords})
-    .setContent(`<p>${title}</p><p>${addr}</p>`)
-    .openOn(mymap);
-    mymap.panTo({...coords});
-  }
-  const onEachFeature = (feature, layer) => {
-    layer.on({
-      click: layerClick
-    });
-  }
-  const geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-  };
-
-  var mymap = L.map('map').setView([51.505, -0.09], 13);
-  //L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  //  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  //  maxZoom: 18,
-  //  id: 'mapbox/streets-v11',
-  //  accessToken: 'pk.eyJ1IjoiYnljaGluZyIsImEiOiJja2JqZWZoM2cwbzlrMnNvNXo2bndqaDZqIn0.sMGelAYTcu6Qs4LrMUVlBA'
-  //}).addTo(mymap);
-  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoiYnljaGluZyIsImEiOiJja2JqZWZoM2cwbzlrMnNvNXo2bndqaDZqIn0.sMGelAYTcu6Qs4LrMUVlBA'
-      }).addTo(mymap);
-
-  const locMap = new Map();
-  if(places.features) {
-    for(const place of places.features) {
-      L.geoJSON(place, {
-        onEachFeature: onEachFeature,
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-      }).addTo(mymap);
-      const countryCode = place.properties.Location["Country Code"] || null;
-      const coords = {
-        lat: place.geometry.coordinates[1],
-        lng: place.geometry.coordinates[0]
-      };
-
-      if(countryCode) {
-        if(!locMap.has(countryCode)) {
-          locMap.set(countryCode, {coords, places: [
-            {
-              title: place.properties.Title,
-              coords,
-              addr: place.properties.Location.Address ? place.properties.Location.Address : null
-            }
-          ]});
-          continue;
-        }
-        const countrySpecs = locMap.get(countryCode);
-        const countryCoords = {...countrySpecs.coords};
-        countryCoords.lat = (coords.lat + countryCoords.lat) / 2;
-        countryCoords.lng = (coords.lng + countryCoords.lng) / 2;
-
-        countrySpecs.places.push(
-          {
-            title: place.properties.Title,
-            coords,
-            addr: place.properties.Location.Address ? place.properties.Location.Address : null
-          }
-        );
-        locMap.set(countryCode, countrySpecs);
-      }
-    }
-  }
-
-  const countryMapping = {"Korea": "KR", "Germany": "DE", "Japan": "JP", "Thailand": "TH", "Taiwan": "TW"};
-
-  const zoomToPlace = (e) => {
-    const title = e.target.innerHTML;
-    const currCountry = document.getElementById('focused-country').innerHTML;
-    const mappings = locMap.get(countryMapping[currCountry]);
-
-    if(mappings.places && mappings.places.length > 0) {
-      const place = mappings.places.find(place => {
-        return place.title === title;
-      });
-      const popup = L.popup({maxWidth: 'auto'})
-      .setLatLng({...place.coords})
-      .setContent(`<p>${title}</p><p>${place.addr}</p>`)
-      .openOn(mymap);
-      mymap.panTo({...place.coords});
-    }
-  }
-
-  const zoomToCountry = (e) => {
-    if(e) {
-      let target = "Japan";
-      if(e && e.target) {
-        target = e.target.innerHTML;
-      }
-      const loc = locMap.get(countryMapping[target]);
-      mymap.panTo({...loc.coords});
-
-      const countries = document.getElementsByClassName("countries")
-        /*
-      Object.entries(countries[0].children).forEach(country => {
-        if(country[1].innerHTML === e.target.innerHTML &&
-          country[1].className.indexOf("expand") === -1) {
-            country[1].className += " expand";
-          }
-          else if(country[1].className.indexOf("expand") !== -1) {
-            country[1].className = country[1].className.replace("expand", "");
-          }
+        const image = createImg(currImgIndex);
+        image.addEventListener('load', () => {
+          renderFrame(image);
         })
-        */
-        const listEl = document.getElementById("place-list");
-        listEl.innerHTML = "";
-        for(const place of loc.places) {
-          const li = document.createElement("li");
-          li.className = "li-desc";
-          li.onclick = zoomToPlace;
-          li.appendChild(document.createTextNode(place.title));
-          listEl.appendChild(li);
+
+        const slider = document.getElementById("img-range");
+        slider.oninput = (e) => {
+          if(isDancing) {
+            isDancing = false;
+          }
+          console.log('current num:', e.target.value)
+          currImgIndex = parseInt(e.target.value);
+          const newImage = createImg(currImgIndex);
+          newImage.addEventListener('load', () => {
+            renderFrame(newImage);
+          });
+        };
+      });
+
+
+      function execDance() {
+        if(isDancing) {
+          return;
         }
-
-        document.getElementById('focused-country').innerHTML = target;
+        if(!isDancing) {
+          isDancing = true;
+        }
+        const slider = document.getElementById('img-range');
+        if(currImgIndex === 6) {
+          currImgIndex = 1;
+          slider.value = currImgIndex;
+        }
+        const intervalId = window.setInterval(() => {
+          if(!isDancing) {
+              window.clearInterval(intervalId);
+              return;
+          }
+          console.log('currIndex', currImgIndex)
+          const img = createImg(currImgIndex);
+          img.addEventListener('load', () => {
+            renderFrame(img);
+            currImgIndex = currImgIndex + 1;
+            slider.value = currImgIndex;
+            if(currImgIndex=== 7) {
+              window.clearInterval(intervalId);
+              currImgIndex = 1;
+              slider.value = currImgIndex;
+              isDancing = false;
+            }
+          });
+        }, 100)
       }
-    }
-    zoomToCountry({target: {innerHTML: "Japan"}});
-    const countries = document.getElementsByClassName("countries");
-    Object.entries(countries[0].children).forEach(country => {country[1].onclick = zoomToCountry})
 
-    // TODO: add smooth scroll
-    //
-    // // Object.entries(document.getElementById('nav').children).forEach(section => console.log(section[1]))
-    // document.querySelectorAll('#nav a').forEach(link => link.onclick = link.scrollIntoView())
-    //
-  </script>
+      function createImg(imgIndex) {
+        const image = document.createElement('img');
+        image.id = "halo-frame";
+        image.className = "center-self";
+        image.style = "width: 100%; height: 100%;"
+        image.src = `./assets/dance-frames/frame_${currImgIndex}.jpg`;
+        return image;
+      }
+
+      function renderFrame(img = null) {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        if (img) {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          return;
+        }
+        const image = createImg(currImgIndex);
+        image.addEventListener('load', () => {
+          ctx.drawImage(image, 0, 0);
+        })
+      }
+    </script>
+
+    <script type="text/javascript">
+      // Implement delay until page visiblity
+      // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
+
+      let options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: [0, 0.2]
+      }
+
+      let observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.intersectionRatio >= 0.2) {
+              console.log('target: ',entry.target)
+              entry.target.classList.add('is-visible');
+
+              const poppers = entry.target.getElementsByClassName('popper');
+              if (poppers.length) {
+                window.setTimeout(() => {
+                  for (pop of poppers) {
+                    pop.classList.add('pop-out');
+                    pop.addEventListener('mouseenter', (e) => {
+                      if (!e.target.classList.contains('pop-out')) {
+                        e.target.classList.remove('pop-in');
+                        e.target.classList.add('pop-out');
+                      }
+                    })
+                    pop.addEventListener('mouseleave', (e) => {
+                      if (!e.target.classList.contains('pop-in')) {
+                        e.target.classList.remove('pop-out');
+                        e.target.classList.add('pop-in');
+                      }
+                    })
+                  }
+                  window.setTimeout(() => {
+                    pop.classList.remove('pop-out');
+                    pop.classList.add('pop-in');
+                  }, 700)
+                }, 1300);
+              }
+
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      }, options);
+
+      const contentItems = document.getElementsByClassName('fade-in-section');
+      for(item of contentItems) {
+        observer.observe(item);
+      }
+    </script>
 </body>
 </html>

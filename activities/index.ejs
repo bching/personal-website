@@ -1,8 +1,94 @@
-<div class="middle-col">
-  <div class="grid flex-row flex-center">
-    <div><img src="./assets/gifs/backflip1.gif" /></div>
-    <div><img src="./assets/gifs/graduation-90s.gif" /></div>
-    <div><img src="./assets/gifs/halos.gif" /></div>
-    <div><img src="./assets/gifs/swipe-hollow.gif" /></div>
-  </div>
+<div class="center-self" style="width: 50%;">
+    <input type="range" min="1" max="100" value="50" class="slider" id="picture-slider">
 </div>
+<div class="center-self" style="width: 80%;">
+  <canvas id="canvas">
+    <!-- <img id="halo-frame" class="center-self" style="width: 100%;" src="./assets/halos/halo_1.png"></img> -->
+  </canvas>
+</div>
+
+<script>
+  let currImg = 1;
+  document.addEventListener("DOMContentLoaded", () => {
+    const image = createImg(currImg);
+    image.addEventListener('load', () => {
+      renderFrame(image);
+    })
+    const canvas = document.getElementById('canvas');
+    canvas.addEventListener('mousemove', getMouseXY);
+  });
+
+  function createImg(imgIndex) {
+    const image = document.createElement('img');
+    image.id = "halo-frame";
+    image.className = "center-self";
+    image.style = "width: 100%; height: 100%;"
+    image.src = `./assets/halo/halo_${currImg}.tiff.png`;
+    return image;
+  }
+
+  function renderFrame(img = null) {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    if (img) {
+      console.log('drawing image:', img)
+      // canvas.width = canvas.offsetWidth;
+      // canvas.height = canvas.offsetHeight;
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+      return;
+    }
+    const image = createImg(currImg);
+    image.addEventListener('load', () => {
+      console.log('image', image);
+      // ctx.width = image.naturalWidth;
+      // ctx.height = image.naturalHeight;
+      ctx.drawImage(image, 0, 0);
+    })
+  }
+  let tempX = 0;
+  let tempY = 0;
+  let frameX = 0; 
+  let frameY = 0; 
+
+
+  function getMouseXY(e) {
+    // if (IE) { // grab the x-y pos.s if browser is IE
+    //   tempX = event.clientX + document.body.scrollLeft;
+    //   tempY = event.clientY + document.body.scrollTop;
+    // }
+    // else {  // grab the x-y pos.s if browser is NS
+    //   tempX = e.pageX;
+    //   tempY = e.pageY;
+    // }  
+      tempX = e.pageX;
+      tempY = e.pageY;
+
+    if (tempX < 0){tempX = 0;}
+    if (tempY < 0){tempY = 0;}  
+    if(Math.abs(tempX - frameX) > 15) {
+      frameX = tempX;
+      // console.log(tempX, tempY)
+      currImg = currImg + 1;
+      if(currImg > 80) {
+        currImg = 1;
+      }
+      console.log('frame:', currImg);
+      renderFrame();
+    } else if(Math.abs(tempY - frameY) > 15) {
+      frameY = tempY;
+      currImg = currImg + 1;
+      if(currImg > 80) {
+        currImg = 1;
+      }
+      console.log('frame:', currImg);
+      renderFrame();
+    }
+
+    // document.Show.MouseX.value = tempX;//MouseX is textbox
+    // document.Show.MouseY.value = tempY;//MouseY is textbox
+
+    return true;
+  }
+</script>
