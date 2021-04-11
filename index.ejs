@@ -12,31 +12,32 @@
   </head>
 
   <body id="bg">
-    <!-- <div class="site-border"></div> -->
     <header>
       <!-- B_O_Y_D logo -->
-      <svg width="253" height="51" viewBox="0 0 253 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_d)">
-          <path
-            d="M4 11.912V6.8H46.768V16.7L38.524 19.4L46.768 22.1V32H9.364V11.912H4ZM18.76 26.888H37.372V25.052L30.28 21.956H18.76V26.888ZM18.76 16.844H30.28L37.372 13.748V11.912H18.76V16.844ZM75.2055 32V6.8H112.609V32H75.2055ZM84.6015 26.888H103.213V11.912H84.6015V26.888ZM137.445 11.912V6.8H149.217L159.117 17.276L168.081 6.8H179.133L163.797 24.728V32H154.401V24.26L142.737 11.912H137.445ZM199.996 11.912V6.8H231.244L242.728 12.92V32H205.36V11.912H199.996ZM214.792 26.888H233.368V14.36L228.76 11.912H214.792V26.888Z"
-            fill="#E2DFDF" />
-          <path
-            d="M50.0195 32H71.6195V37.112H50.0195V32ZM116.219 32H137.819V37.112H116.219V32ZM178.41 32H200.01V37.112H178.41V32Z"
-            fill="#D8B608" />
-        </g>
-        <defs>
-          <filter id="filter0_d" x="0" y="6.79999" width="246.728" height="38.312" filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-            <feOffset dy="4" />
-            <feGaussianBlur stdDeviation="2" />
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
-            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-          </filter>
-        </defs>
-      </svg>
+      <!-- <div id="logo"> -->
+        <svg id="logo" height="51" width="253" viewBox="0 0 253 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <g filter="url(#filter0_d)">
+            <path
+              d="M4 11.912V6.8H46.768V16.7L38.524 19.4L46.768 22.1V32H9.364V11.912H4ZM18.76 26.888H37.372V25.052L30.28 21.956H18.76V26.888ZM18.76 16.844H30.28L37.372 13.748V11.912H18.76V16.844ZM75.2055 32V6.8H112.609V32H75.2055ZM84.6015 26.888H103.213V11.912H84.6015V26.888ZM137.445 11.912V6.8H149.217L159.117 17.276L168.081 6.8H179.133L163.797 24.728V32H154.401V24.26L142.737 11.912H137.445ZM199.996 11.912V6.8H231.244L242.728 12.92V32H205.36V11.912H199.996ZM214.792 26.888H233.368V14.36L228.76 11.912H214.792V26.888Z"
+              fill="#E2DFDF" />
+            <path
+              d="M50.0195 32H71.6195V37.112H50.0195V32ZM116.219 32H137.819V37.112H116.219V32ZM178.41 32H200.01V37.112H178.41V32Z"
+              fill="#D8B608" />
+          </g>
+          <defs>
+            <filter id="filter0_d" x="0" y="6.79999" width="246.728" height="38.312" filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+              <feOffset dy="4" />
+              <feGaussianBlur stdDeviation="2" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
+            </filter>
+          </defs>
+        </svg>
+      <!-- </div> -->
       <nav>
         <ul>
           <li><a href="#">Posts</a></li>
@@ -65,7 +66,7 @@
             <h1>Inspirational Quote!</h1>
           </div>
           <div class="flex-row flex-center">
-            <div class="text-box popper" style="--pop-x: 4px; --pop-y: -4px;">
+            <div class="text-box popper">
               <h2>Inspirational quote here!</h2>
             </div>
           </div>
@@ -112,26 +113,52 @@
       <!-- Dance Range Slider -->
       <div class="fade-in-wrapper">
         <div class="fade-in-section">
-          <div class="flex-row flex-center">
-            <h2>Drag to spin!</h1>
-          </div>
-          <button onclick="execDance()"></button>
           <div class="flex-row flex-center" style="padding-bottom: 5px;">
+            <button class="play-button" onclick="execDance()">
+              <span class="h2-style">
+                GO!
+              </span>
+              <!-- <div class="play-button-wrapper">
+                <svg viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                  <path
+                    d="M14.4721 136.764C7.82313 140.088 0 135.253 0 127.82V10.1803C0 2.74653 7.82313 -2.08843 14.4721 1.23607L132.111 60.0557C139.482 63.741 139.482 74.259 132.111 77.9443L14.4721 136.764Z"
+                    fill="#D8B608" />
+                </svg>
+              </div> -->
+            </button>
+          </div>
+          <div class="flex-row flex-center" style="padding-bottom: 10px;">
             <input type="range" min="1" max="6" value="1" class="slider" id="img-range">
           </div>
           <div class="flex-row flex-center">
-            <canvas id="canvas" class="popper" style="--popX: 0; --popY: -4px;">
-            </canvas>
+            <button onclick="nextClip()">
+              <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M62 109.63V10.3702C62 5.83213 56.4412 3.641 53.3447 6.95863L7.02358 56.5884C5.23062 58.5094 5.23062 61.4906 7.02359 63.4116L53.3447 113.041C56.4412 116.359 62 114.168 62 109.63Z"
+                  fill="#FCFCFC" stroke="black" stroke-width="10" />
+              </svg>
+            </button>
+            <div>
+              <canvas id="canvas">
+              </canvas>
+            </div>
+            <button onclick="nextClip()">
+              <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M5 109.63V10.3702C5 5.83213 10.5588 3.641 13.6553 6.95863L59.9764 56.5884C61.7694 58.5094 61.7694 61.4906 59.9764 63.4116L13.6553 113.041C10.5588 116.359 5 114.168 5 109.63Z"
+                  fill="#FCFCFC" stroke="black" stroke-width="10" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-
     </div>
 
     <script type="text/javascript">
-
       let currImgIndex = 1;
       let isDancing = false;
+      let currClipIndex = 0;
+      const clipCounts = [ 6, 21 ];
       document.addEventListener("DOMContentLoaded", function () {
 
         const image = createImg(currImgIndex);
@@ -153,7 +180,6 @@
         };
       });
 
-
       function execDance() {
         if(isDancing) {
           return;
@@ -162,7 +188,7 @@
           isDancing = true;
         }
         const slider = document.getElementById('img-range');
-        if(currImgIndex === 6) {
+        if(currImgIndex === clipCounts[currClipIndex]) {
           currImgIndex = 1;
           slider.value = currImgIndex;
         }
@@ -171,13 +197,12 @@
               window.clearInterval(intervalId);
               return;
           }
-          console.log('currIndex', currImgIndex)
           const img = createImg(currImgIndex);
           img.addEventListener('load', () => {
             renderFrame(img);
             currImgIndex = currImgIndex + 1;
             slider.value = currImgIndex;
-            if(currImgIndex=== 7) {
+            if(currImgIndex >= clipCounts[currClipIndex] + 1) {
               window.clearInterval(intervalId);
               currImgIndex = 1;
               slider.value = currImgIndex;
@@ -187,12 +212,23 @@
         }, 100)
       }
 
+      function nextClip() {
+        const imgRange = document.getElementById('img-range');
+        currClipIndex = currClipIndex + 1;
+        if(currClipIndex > 1) {
+          currClipIndex = 0;
+        }
+        imgRange.max = clipCounts[currClipIndex];
+        currImgIndex = 1;
+        renderFrame();
+      }
+
       function createImg(imgIndex) {
         const image = document.createElement('img');
         image.id = "halo-frame";
         image.className = "center-self";
         image.style = "width: 100%; height: 100%;"
-        image.src = `./assets/dance-frames/frame_${currImgIndex}.jpg`;
+        image.src = `./assets/dance-frames-${currClipIndex}/frame_${currImgIndex}.jpg`;
         return image;
       }
 
@@ -200,8 +236,8 @@
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         if (img) {
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
+          canvas.width = 1080;
+          canvas.height = 1920;
           ctx.drawImage(img, 0, 0);
           return;
         }
@@ -226,7 +262,6 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             if (entry.intersectionRatio >= 0.2) {
-              console.log('target: ',entry.target)
               entry.target.classList.add('is-visible');
 
               const poppers = entry.target.getElementsByClassName('popper');
