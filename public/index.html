@@ -3,6 +3,7 @@
   <head>
     <title>BYCHING</title>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/main.css?version=1"/>
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -14,37 +15,38 @@
   <body id="bg">
     <header>
       <!-- B_O_Y_D logo -->
-      <!-- <div id="logo"> -->
-        <svg id="logo" height="51" width="253" viewBox="0 0 253 51" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-          <g filter="url(#filter0_d)">
+      <div id="logo">
+        <a>
+          <svg width="173" height="23" viewBox="0 0 173 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M4 11.912V6.8H46.768V16.7L38.524 19.4L46.768 22.1V32H9.364V11.912H4ZM18.76 26.888H37.372V25.052L30.28 21.956H18.76V26.888ZM18.76 16.844H30.28L37.372 13.748V11.912H18.76V16.844ZM75.2055 32V6.8H112.609V32H75.2055ZM84.6015 26.888H103.213V11.912H84.6015V26.888ZM137.445 11.912V6.8H149.217L159.117 17.276L168.081 6.8H179.133L163.797 24.728V32H154.401V24.26L142.737 11.912H137.445ZM199.996 11.912V6.8H231.244L242.728 12.92V32H205.36V11.912H199.996ZM214.792 26.888H233.368V14.36L228.76 11.912H214.792V26.888Z"
+              d="M0 4.492V0.799999H30.888V7.95L24.934 9.9L30.888 11.85V19H3.874V4.492H0ZM10.66 15.308H24.102V13.982L18.98 11.746H10.66V15.308ZM10.66 8.054H18.98L24.102 5.818V4.492H10.66V8.054ZM51.4262 19V0.799999H78.4402V19H51.4262ZM58.2122 15.308H71.6542V4.492H58.2122V15.308ZM96.3767 4.492V0.799999H104.879L112.029 8.366L118.503 0.799999H126.485L115.409 13.748V19H108.623V13.41L100.199 4.492H96.3767ZM141.553 4.492V0.799999H164.121L172.415 5.22V19H145.427V4.492H141.553ZM152.239 15.308H165.655V6.26L162.327 4.492H152.239V15.308Z"
               fill="#E2DFDF" />
             <path
-              d="M50.0195 32H71.6195V37.112H50.0195V32ZM116.219 32H137.819V37.112H116.219V32ZM178.41 32H200.01V37.112H178.41V32Z"
+              d="M33.2363 19H48.8363V22.692H33.2363V19ZM81.0469 19H96.6469V22.692H81.0469V19ZM125.963 19H141.563V22.692H125.963V19Z"
               fill="#D8B608" />
-          </g>
-          <defs>
-            <filter id="filter0_d" x="0" y="6.79999" width="246.728" height="38.312" filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-              <feOffset dy="4" />
-              <feGaussianBlur stdDeviation="2" />
-              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0" />
-              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
-            </filter>
-          </defs>
-        </svg>
-      <!-- </div> -->
+          </svg>
+        </a>
+      </div>
       <nav>
-        <ul>
+        <ul id="nav-items">
           <li><a href="#">Posts</a></li>
           <li><a href="#">Github</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </nav>
+      <nav id="mobile-nav">
+        <div style="--animation-order: 1;">
+          <a href="#">Posts</a>
+        </div>
+        <div style="--animation-order: 2;">
+          <a href="#">Github</a>
+        </div>
+        <div style="--animation-order: 3;">
+          <a href="#">Contact</a>
+        </div>
+      </nav>
+      <button id="open-nav-button" onclick="openNav()">
+      </button>
     </header>
 
     <div id="waves-wrapper">
@@ -251,6 +253,22 @@
     <script type="text/javascript">
       // Implement delay until page visiblity
       // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
+
+      // let mNavOpened = false;
+      // console.log('mnavopened', mNavOpened)
+      const mNav = document.getElementById("mobile-nav");
+      function openNav() {
+        console.log(mNav.classList)
+        if(mNav.classList.contains('opened')) {
+          mNav.classList.remove('opened');
+          mNav.classList.add('closed');
+          // mNavOpened = false;
+          return;
+        }
+        mNav.classList.remove('closed');
+        mNav.classList.add('opened');
+        // mNavOpened = true;
+      }
 
       let options = {
         root: null,
