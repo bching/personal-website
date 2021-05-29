@@ -1,0 +1,65 @@
+    <header>
+      <!-- B_O_Y_D logo -->
+      <div id="logo">
+        <a href="./">
+          <svg width="173" height="23" viewBox="0 0 173 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0 4.492V0.799999H30.888V7.95L24.934 9.9L30.888 11.85V19H3.874V4.492H0ZM10.66 15.308H24.102V13.982L18.98 11.746H10.66V15.308ZM10.66 8.054H18.98L24.102 5.818V4.492H10.66V8.054ZM51.4262 19V0.799999H78.4402V19H51.4262ZM58.2122 15.308H71.6542V4.492H58.2122V15.308ZM96.3767 4.492V0.799999H104.879L112.029 8.366L118.503 0.799999H126.485L115.409 13.748V19H108.623V13.41L100.199 4.492H96.3767ZM141.553 4.492V0.799999H164.121L172.415 5.22V19H145.427V4.492H141.553ZM152.239 15.308H165.655V6.26L162.327 4.492H152.239V15.308Z"
+              fill="#E2DFDF" />
+            <path
+              d="M33.2363 19H48.8363V22.692H33.2363V19ZM81.0469 19H96.6469V22.692H81.0469V19ZM125.963 19H141.563V22.692H125.963V19Z"
+              fill="#D8B608" />
+          </svg>
+        </a>
+      </div>
+      <nav>
+        <ul id="nav-items">
+          <li><a href="https://github.com/bching">Github</a></li>
+          <li><a href="mailto:chingboyd@gmail.com">Contact</a></li>
+          <li><a href="./posts.html">Posts</a></li>
+        </ul>
+      </nav>
+      <nav id="mobile-nav">
+        <div style="--animation-order: 1;">
+          <a href="#">Posts</a>
+        </div>
+        <div style="--animation-order: 2;">
+          <a href="#">Github</a>
+        </div>
+        <div style="--animation-order: 3;">
+          <a href="#">Contact</a>
+        </div>
+      </nav>
+      <button id="open-nav-button" onclick="openNav()">
+      </button>
+    </header>
+
+    <!-- <div id="waves-wrapper">
+      <div id="waves">
+        <svg width="1411" height="168" viewBox="0 0 1411 168" fill="none" preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M368.029 166.645L536.765 83.3226L705.5 0H0L368.029 166.645Z" fill="#454444" />
+          <path d="M1060.21 168L1411 3.05176e-05H705.5L1060.21 168Z" fill="#454444" />
+        </svg>
+      </div>
+    </div> -->
+    <script>
+
+      // Implement delay until page visiblity
+      // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
+      const mNav = document.getElementById("mobile-nav");
+      function openNav() {
+        console.log(mNav.classList)
+        if(mNav.classList.contains('opened')) {
+          mNav.classList.remove('opened');
+          mNav.classList.add('closed');
+          window.setTimeout(() => {
+            mNav.style.display = 'none';
+          }, 1000);
+          return;
+        }
+        mNav.style.display = 'block';
+        mNav.classList.remove('closed');
+        mNav.classList.add('opened');
+      }
+    </script>

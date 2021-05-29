@@ -1,117 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BYCHING</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/main.css?version=1"/>
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-           crossorigin=""/>
-    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="assets/data/places.json"></script>
-  </head>
 
-  <body id="bg">
-    <header>
-      <!-- B_O_Y_D logo -->
-      <div id="logo">
-        <a>
-          <svg width="173" height="23" viewBox="0 0 173 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 4.492V0.799999H30.888V7.95L24.934 9.9L30.888 11.85V19H3.874V4.492H0ZM10.66 15.308H24.102V13.982L18.98 11.746H10.66V15.308ZM10.66 8.054H18.98L24.102 5.818V4.492H10.66V8.054ZM51.4262 19V0.799999H78.4402V19H51.4262ZM58.2122 15.308H71.6542V4.492H58.2122V15.308ZM96.3767 4.492V0.799999H104.879L112.029 8.366L118.503 0.799999H126.485L115.409 13.748V19H108.623V13.41L100.199 4.492H96.3767ZM141.553 4.492V0.799999H164.121L172.415 5.22V19H145.427V4.492H141.553ZM152.239 15.308H165.655V6.26L162.327 4.492H152.239V15.308Z"
-              fill="#E2DFDF" />
-            <path
-              d="M33.2363 19H48.8363V22.692H33.2363V19ZM81.0469 19H96.6469V22.692H81.0469V19ZM125.963 19H141.563V22.692H125.963V19Z"
-              fill="#D8B608" />
-          </svg>
-        </a>
-      </div>
-      <nav>
-        <ul id="nav-items">
-          <li><a href="#">Posts</a></li>
-          <li><a href="#">Github</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </nav>
-      <nav id="mobile-nav">
-        <div style="--animation-order: 1;">
-          <a href="#">Posts</a>
-        </div>
-        <div style="--animation-order: 2;">
-          <a href="#">Github</a>
-        </div>
-        <div style="--animation-order: 3;">
-          <a href="#">Contact</a>
-        </div>
-      </nav>
-      <button id="open-nav-button" onclick="openNav()">
-      </button>
-    </header>
+<head>
+  <title>BYCHING</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/main.css?version=1" />
+  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <script type="module" src="index.js"></script>
+</head>
 
-    <div id="waves-wrapper">
-      <div id="waves">
-        <svg width="1411" height="168" viewBox="0 0 1411 168" fill="none" preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d="M368.029 166.645L536.765 83.3226L705.5 0H0L368.029 166.645Z" fill="#454444" />
-          <path d="M1060.21 168L1411 3.05176e-05H705.5L1060.21 168Z" fill="#454444" />
-        </svg>
-      </div>
-    </div>
+<body id="bg">
+
+  <%- include('header'); %>
 
     <div class="max-width-wrapper">
-
       <!-- Boyd's thoughts -->
-      <div class="fade-in-wrapper">
+      <div id="intro-wrapper" class="fade-in-wrapper">
         <div class="fade-in-section">
           <div class="flex-row flex-center">
-            <h1>Inspirational Quote!</h1>
+            <h1>Boyd Ching</h1>
           </div>
           <div class="flex-row flex-center">
             <div class="text-box popper">
-              <h2>Inspirational quote here!</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-      <!-- Boyd's skill summary -->
-      <div class="fade-in-wrapper">
-        <div class="fade-in-section">
-          <div class="flex-row flex-center">
-            <h2>Boyd is a...</h1>
-          </div>
-          <div class="flex-row flex-center">
-            <h1><u>Software Developer</u></h1>
-          </div>
-          <div class="flex-row flex-center">
-            <div class="list-wrapper">
-              <div>
-                <h2>Languages</h2>
-                <ul>
-                  <li>Javascript</li>
-                  <li>NodeJS</li>
-                  <li>Typescript</li>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                </ul>
-              </div>
-              <div>
-                <h2>Tools & Libraries</h2>
-                <ul>
-                  <li>ReactJS</li>
-                  <li>Express</li>
-                  <li>Git</li>
-                  <li>Docker</li>
-                  <li>Figma (designed in Figma :)</li>
-                  <li>AWS</li>
-                </ul>
-              </div>
+              <p>
+                I am a <span id="open-dev-bubble" class="word-bg-fill">developer</span> who creates modern web applications.
+              </p>
+              <p>
+                I am also a lifetime learner of <span id="open-lang-bubble" class="word-bg-fill">languages</span>!
+              </p>
             </div>
           </div>
         </div>
       </div>
 
+      <div class="fade-in-wrapper">
+        <div class="fade-in-section">
+          <div class="flex-row flex-center">
+            <h2>I write some stuff!</h1>
+          </div>
+          <div class="post-wrapper">
+            <div class="post-content">
+              <h2>Post 5</h2>
+              <p class="post-text">In rutrum massa arcu, sed condimentum lectus porta quis. In rhoncus massa ut turpis
+                tristique
+                ornare non
+                eget
+                augue. Integer lobortis quam ut leo tincidunt viverra. Nullam congue, sem posuere euismod
+                pulvinar, arcu
+                enim
+                viverra diam, sed varius felis dolor eu libero. Maecenas tempus quis magna id rutrum. Donec
+                magna
+                libero,
+                faucibus id nisl sed, pretium aliquam elit. Nullam lobortis ornare turpis, aliquet
+                condimentum odio
+                facilisis
+                sed. Aliquam tempus malesuada mi, non sodales erat condimentum sed. Sed est justo, feugiat
+                ut libero sit
+                amet,
+                sodales fermentum dui. Phasellus eget lectus erat. Nulla tempor metus sed varius placerat.
+                Sed
+                consectetur
+                neque
+                eu risus ultricies, sit amet tempus metus eleifend. Proin sed mauris dignissim, condimentum
+                quam nec,
+                sagittis
+                dolor. Sed scelerisque mollis justo, ac scelerisque eros rutrum ut. Phasellus ultricies sit
+                amet dolor
+                id
+                suscipit. Pellentesque sed sapien ac nibh elementum luctus.</p>
+            </div>
+            <div class="flex-row flex-center fix-bottom">
+                <div class="open-post-button">
+                    <div class="arrow-down">
+                    </div>
+                    <div class="arrow-down new-arrow">
+                    </div>
+                </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+      
+      
       <!-- Dance Range Slider -->
       <div class="fade-in-wrapper">
         <div class="fade-in-section">
@@ -120,13 +92,6 @@
               <span class="h2-style">
                 GO!
               </span>
-              <!-- <div class="play-button-wrapper">
-                <svg viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                  <path
-                    d="M14.4721 136.764C7.82313 140.088 0 135.253 0 127.82V10.1803C0 2.74653 7.82313 -2.08843 14.4721 1.23607L132.111 60.0557C139.482 63.741 139.482 74.259 132.111 77.9443L14.4721 136.764Z"
-                    fill="#D8B608" />
-                </svg>
-              </div> -->
             </button>
           </div>
           <div class="flex-row flex-center" style="padding-bottom: 10px;">
@@ -160,8 +125,65 @@
       let currImgIndex = 1;
       let isDancing = false;
       let currClipIndex = 0;
-      const clipCounts = [ 6, 21 ];
+      // Each value correlates to the relative 'dance-frames-<index>' folder
+      const clipCounts = [6, 21];
+
+      let showingSlideInBubble = false;
+
+
       document.addEventListener("DOMContentLoaded", function () {
+        const slideInBubbleBtns = document.getElementsByClassName('word-bg-fill');
+        for(let b of slideInBubbleBtns) {
+          console.log('b', b)
+          b.addEventListener('click', slideInBubble);
+          // b.addEventListener('touchend', slideInBubble);
+        }
+
+        function slideInBubble(e) {
+          console.log('showing in slideInBubble', showingSlideInBubble)
+          const type = this.id;
+          console.log('sliding in', type)
+          const introWrapper = document.getElementsByClassName('fade-in-wrapper')[0];
+          const bubble = document.createElement('div');
+          bubble.className = 'slide-in-bubble';
+          if(type === 'open-dev-bubble') {
+            bubble.id = 'dev-bubble';
+            bubble.innerHTML = 
+            "<div class='list-wrapper'>" +
+              "<div><h2>Languages</h2><ul><li>Javascript</li><li>NodeJS</li><li>Typescript</li> <li>HTML</li> <li>CSS</li></ul></div>" +
+              "<div><h2>Tools & Libraries</h2> <ul> <li>ReactJS</li> <li>Express</li> <li>Git</li> <li>Docker</li> <li>Figma (designed in Figma :)</li> <li>AWS</li> </ul> </div>" +
+            "</div>";
+          }
+          else if(type === 'open-lang-bubble') {
+            bubble.id = 'lang-bubble';
+            bubble.innerHTML = 
+            "<div class='list-wrapper'>" +
+              "<div><ul><li>Japanese</li><li>Korean</li><li>English</li><li>Thai</li></ul></div>" +
+            "</div>";
+          }
+          showingSlideInBubble = true;
+          introWrapper.appendChild(bubble);
+          return;
+        }
+
+        document.addEventListener("scroll", cleanupBubbles);
+          // document.addEventListener("click", cleanupBubbles);
+
+        function cleanupBubbles() {
+            console.log('showing', showingSlideInBubble)
+          if(showingSlideInBubble) {
+            const introWrapper = document.getElementsByClassName('fade-in-wrapper')[0];
+            const slideInBubbles = document.getElementsByClassName('slide-in-bubble');
+            for(let b of slideInBubbles) {
+              b.classList.add('slide-out');
+              window.setTimeout(function() {
+                b.style.setProperty('top', 'unset')
+                introWrapper.removeChild(b);
+              }, 1000)
+            }
+            showingSlideInBubble = false;
+          }
+        }
 
         const image = createImg(currImgIndex);
         image.addEventListener('load', () => {
@@ -170,7 +192,7 @@
 
         const slider = document.getElementById("img-range");
         slider.oninput = (e) => {
-          if(isDancing) {
+          if (isDancing) {
             isDancing = false;
           }
           console.log('current num:', e.target.value)
@@ -183,28 +205,28 @@
       });
 
       function execDance() {
-        if(isDancing) {
+        if (isDancing) {
           return;
         }
-        if(!isDancing) {
+        if (!isDancing) {
           isDancing = true;
         }
         const slider = document.getElementById('img-range');
-        if(currImgIndex === clipCounts[currClipIndex]) {
+        if (currImgIndex === clipCounts[currClipIndex]) {
           currImgIndex = 1;
           slider.value = currImgIndex;
         }
         const intervalId = window.setInterval(() => {
-          if(!isDancing) {
-              window.clearInterval(intervalId);
-              return;
+          if (!isDancing) {
+            window.clearInterval(intervalId);
+            return;
           }
           const img = createImg(currImgIndex);
           img.addEventListener('load', () => {
             renderFrame(img);
             currImgIndex = currImgIndex + 1;
             slider.value = currImgIndex;
-            if(currImgIndex >= clipCounts[currClipIndex] + 1) {
+            if (currImgIndex >= clipCounts[currClipIndex] + 1) {
               window.clearInterval(intervalId);
               currImgIndex = 1;
               slider.value = currImgIndex;
@@ -217,7 +239,7 @@
       function nextClip() {
         const imgRange = document.getElementById('img-range');
         currClipIndex = currClipIndex + 1;
-        if(currClipIndex > 1) {
+        if (currClipIndex > 1) {
           currClipIndex = 0;
         }
         imgRange.max = clipCounts[currClipIndex];
@@ -248,75 +270,53 @@
           ctx.drawImage(image, 0, 0);
         })
       }
-    </script>
 
-    <script type="text/javascript">
-      // Implement delay until page visiblity
-      // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API/Timing_element_visibility
-
-      // let mNavOpened = false;
-      // console.log('mnavopened', mNavOpened)
-      const mNav = document.getElementById("mobile-nav");
-      function openNav() {
-        console.log(mNav.classList)
-        if(mNav.classList.contains('opened')) {
-          mNav.classList.remove('opened');
-          mNav.classList.add('closed');
-          // mNavOpened = false;
-          return;
-        }
-        mNav.classList.remove('closed');
-        mNav.classList.add('opened');
-        // mNavOpened = true;
-      }
-
-      let options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: [0, 0.2]
-      }
-
-      let observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (entry.intersectionRatio >= 0.2) {
-              entry.target.classList.add('is-visible');
-
-              const poppers = entry.target.getElementsByClassName('popper');
-              if (poppers.length) {
-                window.setTimeout(() => {
-                  for (pop of poppers) {
-                    pop.classList.add('pop-out');
-                    pop.addEventListener('mouseenter', (e) => {
-                      if (!e.target.classList.contains('pop-out')) {
-                        e.target.classList.remove('pop-in');
-                        e.target.classList.add('pop-out');
-                      }
-                    })
-                    pop.addEventListener('mouseleave', (e) => {
-                      if (!e.target.classList.contains('pop-in')) {
-                        e.target.classList.remove('pop-out');
-                        e.target.classList.add('pop-in');
-                      }
-                    })
-                  }
-                  window.setTimeout(() => {
-                    pop.classList.remove('pop-out');
-                    pop.classList.add('pop-in');
-                  }, 700)
-                }, 1300);
+      document.addEventListener("DOMContentLoaded", function () {
+          const posts = document.getElementsByClassName('post-wrapper');
+          if (window.mobileCheck()) {
+            console.log('mobile checked')
+              for (let p of posts) {
+                  // p.addEventListener('touchstart', expandPost, true);
+                  // p.addEventListener('click', togglePost, true);
               }
-
-              observer.unobserve(entry.target);
+          }
+          else {
+            for (let p of posts) {
+                p.addEventListener('mouseover', expandPost, true);
+                p.addEventListener('mouseleave', shrinkPost, true);
             }
           }
-        });
-      }, options);
+      });
 
-      const contentItems = document.getElementsByClassName('fade-in-section');
-      for(item of contentItems) {
-        observer.observe(item);
+      function togglePost(e) {
+          if(!e.target.classList.contains('hover')) {
+              shrinkPost(e);
+              return;
+          }
+          expandPost().bind(this);
       }
+
+      function expandPost(e = null) {
+          console.log('expand')
+          console.log('this:',this)
+          this.classList.add('hover');
+          window.setTimeout(() => {
+              const postText = this.querySelector('div.post-content > p.post-text');
+              postText.style.setProperty('-webkit-line-clamp', 'unset');
+          }, 200);
+      }
+      function shrinkPost(e = null) {
+          if(e && e.target !== this) {
+              return;
+          }
+          this.classList.remove('hover');
+          window.setTimeout(() => {
+              const postText = this.querySelector('div.post-content > p.post-text');
+              postText.style.setProperty('-webkit-line-clamp', '4');
+          }, 200);
+      }
+
     </script>
 </body>
+
 </html>
