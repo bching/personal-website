@@ -98,38 +98,32 @@
             <input type="range" min="1" max="6" value="1" class="slider" id="img-range">
           </div>
           <div class="flex-row flex-center">
-            <button onclick="nextClip()">
+            <!-- <button onclick="nextClip()">
               <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M62 109.63V10.3702C62 5.83213 56.4412 3.641 53.3447 6.95863L7.02358 56.5884C5.23062 58.5094 5.23062 61.4906 7.02359 63.4116L53.3447 113.041C56.4412 116.359 62 114.168 62 109.63Z"
                   fill="#FCFCFC" stroke="black" stroke-width="10" />
               </svg>
-            </button>
+            </button> -->
             <div>
               <canvas id="canvas">
               </canvas>
             </div>
-            <button onclick="nextClip()">
+            <!-- <button onclick="nextClip()">
               <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M5 109.63V10.3702C5 5.83213 10.5588 3.641 13.6553 6.95863L59.9764 56.5884C61.7694 58.5094 61.7694 61.4906 59.9764 63.4116L13.6553 113.041C10.5588 116.359 5 114.168 5 109.63Z"
                   fill="#FCFCFC" stroke="black" stroke-width="10" />
               </svg>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
     </div>
 
     <script type="text/javascript">
-      let currImgIndex = 1;
-      let isDancing = false;
-      let currClipIndex = 0;
-      // Each value correlates to the relative 'dance-frames-<index>' folder
-      const clipCounts = [6, 21];
-
       let showingSlideInBubble = false;
-
+      const images = [];
 
       document.addEventListener("DOMContentLoaded", function () {
         const slideInBubbleBtns = document.getElementsByClassName('word-bg-fill');
@@ -185,6 +179,21 @@
           }
         }
 
+        function createImages(index) {
+          if(index <= clipCounts[currClipIndex]) {
+            console.log('index', index)
+            asyncCreateImg(index).then((res) => {
+              console.log('push', res)
+              images.push(res)
+              createImages(index + 1);
+            });
+          }
+          console.log(images)
+        }
+
+        createImages(1);
+
+
         const image = createImg(currImgIndex);
         image.addEventListener('load', () => {
           renderFrame(image);
@@ -204,36 +213,99 @@
         };
       });
 
+      let currImgIndex = 1;
+      let isDancing = false;
+      let currClipIndex = 0;
+      // Each value correlates to the relative 'dance-frames-<index>' folder
+      const clipCounts = [6, 21];
+
       function execDance() {
-        if (isDancing) {
-          return;
-        }
-        if (!isDancing) {
-          isDancing = true;
-        }
-        const slider = document.getElementById('img-range');
-        if (currImgIndex === clipCounts[currClipIndex]) {
-          currImgIndex = 1;
-          slider.value = currImgIndex;
-        }
-        const intervalId = window.setInterval(() => {
-          if (!isDancing) {
-            window.clearInterval(intervalId);
+          console.log('load image')
+          console.log('currImages', images)
+          if (isDancing) {
             return;
           }
-          const img = createImg(currImgIndex);
-          img.addEventListener('load', () => {
-            renderFrame(img);
-            currImgIndex = currImgIndex + 1;
+          if (!isDancing) {
+            isDancing = true;
+          }
+          const slider = document.getElementById('img-range');
+          if (currImgIndex === clipCounts[currClipIndex]) {
+            currImgIndex = 1;
             slider.value = currImgIndex;
-            if (currImgIndex >= clipCounts[currClipIndex] + 1) {
-              window.clearInterval(intervalId);
-              currImgIndex = 1;
-              slider.value = currImgIndex;
-              isDancing = false;
-            }
+          }
+
+          const canvas = document.getElementById('canvas');
+          const ctx = canvas.getContext('2d');
+
+          let fadeOut = false;
+
+          // Load next image index 
+          currImgIndex += 1;
+          // const img = createImg(currImgIndex);
+          // img.addEventListener('load', () => {
+          //   ctx.drawImage(img, 0, 0);
+          //   renderFrame();
+          // });
+
+          renderNextFrame();
+      }
+
+      function fadeTransition() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        console.log('fadeTransition create at', currImgIndex)
+        const img = createImg(currImgIndex);
+        return new Promise((res) => {
+          img.addEventListener('load', () => {
+            const id = window.setInterval(() => {
+              if(ctx.globalAlpha - 0.05 <= 0) {
+                console.log('clearinterval')
+                window.clearInterval(id);
+                fadeOut = true;
+                return res();
+              }
+              ctx.globalAlpha -= 0.05;
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.drawImage(img, 0, 0);
+            }, 30)
+          })
+        })
+      }
+
+      function renderNextFrame(timeoutId = null) {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        console.log('currIndex', currImgIndex)
+          // Start cycling next images
+        if(currImgIndex >= clipCounts[currClipIndex] + 1) {
+          window.clearInterval(timeoutId);
+
+          console.log(images)
+          console.log('load img at ', images[images.length - 1])
+          // Reset last image globalAlpha
+          ctx.globalAlpha = 1;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(images[images.length - 1], 0, 0);
+          currImgIndex = 1;
+          isDancing = false;
+          return;
+        } else {
+          // Next image
+          const newImg = createImg(currImgIndex);
+          console.log('newImg', newImg);
+
+          fadeTransition().then((res) => {
+            // Handle end of array
+            console.log('out of fade')
+            const id = window.setTimeout(() => {
+              console.log('new timeout')
+              currImgIndex += 1;
+              ctx.globalAlpha = 1;
+              console.log('after fading', ctx.globalAlpha);
+              renderNextFrame(id);
+            }, 100);
           });
-        }, 100)
+        }
       }
 
       function nextClip() {
@@ -256,9 +328,21 @@
         return image;
       }
 
+      function asyncCreateImg(imgIndex) {
+        return new Promise((res) => {
+          const image = document.createElement('img');
+          image.id = "halo-frame";
+          image.className = "center-self";
+          image.style = "width: 100%; height: 100%;"
+          image.src = `./assets/dance-frames-${currClipIndex}/frame_${imgIndex}.jpg`;
+          return res(image);
+        })
+      }
+
       function renderFrame(img = null) {
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
+
         if (img) {
           canvas.width = 1080;
           canvas.height = 1920;
