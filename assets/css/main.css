@@ -635,18 +635,50 @@ nav {
   margin: auto;
 }
 
-/* .play-button:focus {
-  outline: 2px dashed #fff;
-} */
+.scene {
+  /* width: 210px;
+  height: 140px; */
+  width: 300px;
+  height: 500px;
+  position: relative;
+  perspective: 1000px;
+  margin-bottom: 200px;
+}
 
-/* .play-button:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-} */
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+}
 
-/* .play-button:hover svg {
-  transform: scale(1.1);
-} */
+.carousel__cell {
+  position: absolute;
+  /* width: 190px;
+  height: 120px; */
+  /* width: 1080px;
+  height: 1920px; */
+  width: 270px;
+  height: 480px;
+  left: 10px;
+  top: 10px;
+}
+
+/* r = 0.5 width of panel / tan(0.5 arc of each panel) */
+/* r is center distance to middle of each panel */
+/* .carousel__cell:nth-child(1) { transform: rotateY(  0deg); }
+.carousel__cell:nth-child(2) { transform: rotateY( 60deg); }
+.carousel__cell:nth-child(3) { transform: rotateY(120deg); }
+.carousel__cell:nth-child(4) { transform: rotateY(180deg); }
+.carousel__cell:nth-child(5) { transform: rotateY(240deg); }
+.carousel__cell:nth-child(6) { transform: rotateY(300deg); } */
+
+.carousel__cell:nth-child(1) { transform: rotateY(  0deg) translateZ(260px); }
+.carousel__cell:nth-child(2) { transform: rotateY( 60deg) translateZ(260px); }
+.carousel__cell:nth-child(3) { transform: rotateY(120deg) translateZ(260px); }
+.carousel__cell:nth-child(4) { transform: rotateY(180deg) translateZ(260px); }
+.carousel__cell:nth-child(5) { transform: rotateY(240deg) translateZ(260px); }
+.carousel__cell:nth-child(6) { transform: rotateY(300deg) translateZ(260px); }
 
 .slider-wrapper{
   width: 300px;

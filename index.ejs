@@ -85,7 +85,7 @@
       
       
       <!-- Dance Range Slider -->
-      <div class="fade-in-wrapper">
+      <!-- <div class="fade-in-wrapper">
         <div class="fade-in-section">
           <div class="flex-row flex-center" style="padding-bottom: 5px;">
             <button class="play-button" onclick="execDance()">
@@ -98,28 +98,35 @@
             <input type="range" min="1" max="6" value="1" class="slider" id="img-range">
           </div>
           <div class="flex-row flex-center">
-            <!-- <button onclick="nextClip()">
-              <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M62 109.63V10.3702C62 5.83213 56.4412 3.641 53.3447 6.95863L7.02358 56.5884C5.23062 58.5094 5.23062 61.4906 7.02359 63.4116L53.3447 113.041C56.4412 116.359 62 114.168 62 109.63Z"
-                  fill="#FCFCFC" stroke="black" stroke-width="10" />
-              </svg>
-            </button> -->
             <div>
               <canvas id="canvas">
               </canvas>
             </div>
-            <!-- <button onclick="nextClip()">
-              <svg width="67" height="120" viewBox="0 0 67 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M5 109.63V10.3702C5 5.83213 10.5588 3.641 13.6553 6.95863L59.9764 56.5884C61.7694 58.5094 61.7694 61.4906 59.9764 63.4116L13.6553 113.041C10.5588 116.359 5 114.168 5 109.63Z"
-                  fill="#FCFCFC" stroke="black" stroke-width="10" />
-              </svg>
-            </button> -->
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="fade-in-wrapper">
+      <div class="fade-in-section">
+        <div class="flex-row flex-center" style="padding-bottom: 5px;">
+          <button class="play-button" onclick="execDance()">
+            <span class="h2-style">
+              GO!
+            </span>
+          </button>
+        </div>
+        <div class="flex-row flex-center">
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="flex-row flex-center">
+    <div class="scene">
+      <div class="carousel">
+      </div>
+    </div>
+  </div>
 
     <script type="text/javascript">
       let showingSlideInBubble = false;
@@ -179,38 +186,51 @@
           }
         }
 
+        const carousel = document.getElementsByClassName('carousel')[0];
         function createImages(index) {
           if(index <= clipCounts[currClipIndex]) {
-            console.log('index', index)
+            // console.log('index', index)
             asyncCreateImg(index).then((res) => {
               console.log('push', res)
               images.push(res)
+              const carouselCell = document.createElement("div");
+              carouselCell.className = "carousel__cell";
+              carouselCell.appendChild(res);
+              carousel.appendChild(carouselCell);
               createImages(index + 1);
             });
           }
-          console.log(images)
+          console.log('images',images)
         }
 
         createImages(1);
+        // const carousel = document.getElementsByClassName('carousel')[0];
+        // for(const img of images) {
+        //   const carouselCell = document.createElement("div");
+        //   console.log('img', img)
+        //   carouselCell.className = "carousel__cell";
+        //   carouselCell.appendChild(img);
+        //   carouselCell.appendChild(carouselCell);
+        // }
 
 
-        const image = createImg(currImgIndex);
-        image.addEventListener('load', () => {
-          renderFrame(image);
-        })
+        // const image = createImg(currImgIndex);
+        // image.addEventListener('load', () => {
+        //   renderFrame(image);
+        // })
 
-        const slider = document.getElementById("img-range");
-        slider.oninput = (e) => {
-          if (isDancing) {
-            isDancing = false;
-          }
-          console.log('current num:', e.target.value)
-          currImgIndex = parseInt(e.target.value);
-          const newImage = createImg(currImgIndex);
-          newImage.addEventListener('load', () => {
-            renderFrame(newImage);
-          });
-        };
+        // const slider = document.getElementById("img-range");
+        // slider.oninput = (e) => {
+        //   if (isDancing) {
+        //     isDancing = false;
+        //   }
+        //   console.log('current num:', e.target.value)
+        //   currImgIndex = parseInt(e.target.value);
+        //   const newImage = createImg(currImgIndex);
+        //   newImage.addEventListener('load', () => {
+        //     renderFrame(newImage);
+        //   });
+        // };
       });
 
       let currImgIndex = 1;
@@ -308,17 +328,6 @@
         }
       }
 
-      function nextClip() {
-        const imgRange = document.getElementById('img-range');
-        currClipIndex = currClipIndex + 1;
-        if (currClipIndex > 1) {
-          currClipIndex = 0;
-        }
-        imgRange.max = clipCounts[currClipIndex];
-        currImgIndex = 1;
-        renderFrame();
-      }
-
       function createImg(imgIndex) {
         const image = document.createElement('img');
         image.id = "halo-frame";
@@ -355,50 +364,61 @@
         })
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-          const posts = document.getElementsByClassName('post-wrapper');
-          if (window.mobileCheck()) {
-            console.log('mobile checked')
-              for (let p of posts) {
-                  // p.addEventListener('touchstart', expandPost, true);
-                  // p.addEventListener('click', togglePost, true);
-              }
-          }
-          else {
-            for (let p of posts) {
-                p.addEventListener('mouseover', expandPost, true);
-                p.addEventListener('mouseleave', shrinkPost, true);
-            }
-          }
-      });
+      // document.addEventListener("DOMContentLoaded", function () {
+      //     const posts = document.getElementsByClassName('post-wrapper');
+      //     if (window.mobileCheck()) {
+      //       console.log('mobile checked')
+      //         for (let p of posts) {
+      //             // p.addEventListener('touchstart', expandPost, true);
+      //             // p.addEventListener('click', togglePost, true);
+      //         }
+      //     }
+      //     else {
+      //       for (let p of posts) {
+      //           p.addEventListener('mouseover', expandPost, true);
+      //           p.addEventListener('mouseleave', shrinkPost, true);
+      //       }
+      //     }
+      // });
 
-      function togglePost(e) {
-          if(!e.target.classList.contains('hover')) {
-              shrinkPost(e);
-              return;
-          }
-          expandPost().bind(this);
-      }
+      // function togglePost(e) {
+      //     if(!e.target.classList.contains('hover')) {
+      //         shrinkPost(e);
+      //         return;
+      //     }
+      //     expandPost().bind(this);
+      // }
 
-      function expandPost(e = null) {
-          console.log('expand')
-          console.log('this:',this)
-          this.classList.add('hover');
-          window.setTimeout(() => {
-              const postText = this.querySelector('div.post-content > p.post-text');
-              postText.style.setProperty('-webkit-line-clamp', 'unset');
-          }, 200);
-      }
-      function shrinkPost(e = null) {
-          if(e && e.target !== this) {
-              return;
-          }
-          this.classList.remove('hover');
-          window.setTimeout(() => {
-              const postText = this.querySelector('div.post-content > p.post-text');
-              postText.style.setProperty('-webkit-line-clamp', '4');
-          }, 200);
-      }
+      // function expandPost(e = null) {
+      //     console.log('expand')
+      //     console.log('this:',this)
+      //     this.classList.add('hover');
+      //     window.setTimeout(() => {
+      //         const postText = this.querySelector('div.post-content > p.post-text');
+      //         postText.style.setProperty('-webkit-line-clamp', 'unset');
+      //     }, 200);
+      // }
+      // function shrinkPost(e = null) {
+      //     if(e && e.target !== this) {
+      //         return;
+      //     }
+      //     this.classList.remove('hover');
+      //     window.setTimeout(() => {
+      //         const postText = this.querySelector('div.post-content > p.post-text');
+      //         postText.style.setProperty('-webkit-line-clamp', '4');
+      //     }, 200);
+      // }
+
+      // function nextClip() {
+      //   const imgRange = document.getElementById('img-range');
+      //   currClipIndex = currClipIndex + 1;
+      //   if (currClipIndex > 1) {
+      //     currClipIndex = 0;
+      //   }
+      //   imgRange.max = clipCounts[currClipIndex];
+      //   currImgIndex = 1;
+      //   renderFrame();
+      // }
 
     </script>
 </body>
