@@ -83,37 +83,19 @@
         </div>
       </div>
       
-      
-      <!-- Dance Range Slider -->
-      <!-- <div class="fade-in-wrapper">
-        <div class="fade-in-section">
-          <div class="flex-row flex-center" style="padding-bottom: 5px;">
-            <button class="play-button" onclick="execDance()">
-              <span class="h2-style">
-                GO!
-              </span>
-            </button>
-          </div>
-          <div class="flex-row flex-center" style="padding-bottom: 10px;">
-            <input type="range" min="1" max="6" value="1" class="slider" id="img-range">
-          </div>
-          <div class="flex-row flex-center">
-            <div>
-              <canvas id="canvas">
-              </canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div class="fade-in-wrapper">
       <div class="fade-in-section">
         <div class="flex-row flex-center" style="padding-bottom: 5px;">
-          <button class="play-button" onclick="execDance()">
+          <button class="play-button" onclick="execDance(0)">
             <span class="h2-style">
               GO!
             </span>
+          </button>
+          <button class="play-button" onclick="resetDance()">
+            <img src="assets/images/Arrow-Reset.png" style="height: 80%;" />
+            <!-- <span class="h2-style">
+              RESET!
+            </span> -->
           </button>
         </div>
         <div class="flex-row flex-center">
@@ -132,7 +114,7 @@
       let showingSlideInBubble = false;
       const images = [];
 
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", async function () {
         const slideInBubbleBtns = document.getElementsByClassName('word-bg-fill');
         for(let b of slideInBubbleBtns) {
           console.log('b', b)
@@ -187,93 +169,103 @@
         }
 
         const carousel = document.getElementsByClassName('carousel')[0];
-        function createImages(index) {
+        async function createImages(index, deg=null) {
           if(index <= clipCounts[currClipIndex]) {
-            // console.log('index', index)
+          // if(index <= 3) {
             asyncCreateImg(index).then((res) => {
               console.log('push', res)
               images.push(res)
+
+              const backCard = document.createElement('img')
+              backCard.style = "width: 100%; height: 100%;"
+              backCard.src = `./assets/images/backcard.png`;
+
               const carouselCell = document.createElement("div");
               carouselCell.className = "carousel__cell";
-              carouselCell.appendChild(res);
+              const frontFace = document.createElement("div");
+              frontFace.className = "face-front";
+              frontFace.appendChild(res);
+
+              const backFace = document.createElement("div");
+              backFace.className = "face-back";
+              backFace.appendChild(backCard);
+
+              carouselCell.appendChild(frontFace);
+              carouselCell.appendChild(backFace);
               carousel.appendChild(carouselCell);
-              createImages(index + 1);
+
+              if(deg === null) {
+                carouselCell.style["transform"] = "rotateY(340deg) translateZ(50px)";
+
+                createImages(index + 1, 340 + 2);
+                return;
+              }
+              carouselCell.style["transform"] = `rotateY(${deg}deg) translateZ(50px)`;
+
+              createImages(index + 1, deg + 2);
             });
           }
           console.log('images',images)
         }
 
-        createImages(1);
-        // const carousel = document.getElementsByClassName('carousel')[0];
-        // for(const img of images) {
-        //   const carouselCell = document.createElement("div");
-        //   console.log('img', img)
-        //   carouselCell.className = "carousel__cell";
-        //   carouselCell.appendChild(img);
-        //   carouselCell.appendChild(carouselCell);
-        // }
-
-
-        // const image = createImg(currImgIndex);
-        // image.addEventListener('load', () => {
-        //   renderFrame(image);
-        // })
-
-        // const slider = document.getElementById("img-range");
-        // slider.oninput = (e) => {
-        //   if (isDancing) {
-        //     isDancing = false;
-        //   }
-        //   console.log('current num:', e.target.value)
-        //   currImgIndex = parseInt(e.target.value);
-        //   const newImage = createImg(currImgIndex);
-        //   newImage.addEventListener('load', () => {
-        //     renderFrame(newImage);
-        //   });
-        // };
+        await createImages(1);
+        console.log('curr images',images)
       });
 
       let currImgIndex = 1;
       let isDancing = false;
       let currClipIndex = 0;
       // Each value correlates to the relative 'dance-frames-<index>' folder
-      const clipCounts = [6, 21];
+      const clipCounts = [58, 21];
 
-      function execDance() {
-          console.log('load image')
-          console.log('currImages', images)
-          if (isDancing) {
+      const carouselCells = document.getElementsByClassName('carousel__cell');
+
+      async function execDance(nextCell, deg = null) {
+        if(nextCell >= clipCounts[currClipIndex]) {
+          return;
+        }
+        const transformStyle = carouselCells[nextCell].style.transform;
+        const rotateY = transformStyle.replace(/[^\d.]/g, '');
+        console.log(rotateY)
+        if(deg === null) {
+          carouselCells[nextCell].style["transform"]= "rotateY(140deg) translateZ(50px)";
+          setTimeout(() => execDance(nextCell + 1, 140 + 2), 150);
+          return
+        }
+        carouselCells[nextCell].style["transform"]= `rotateY(${deg}deg) translateZ(50px)`;
+        setTimeout(() => execDance(nextCell + 1, deg + 2), 150);
+      }
+
+      function resetDance() {
+        // for(const cell of carouselCells) {
+        //   cell.classList.add('unset-transition');
+        // }
+        console.log('before reset',carouselCells)
+        function transformNext(nextCell, deg = null) {
+          if(nextCell >= clipCounts[currClipIndex]) {
             return;
           }
-          if (!isDancing) {
-            isDancing = true;
+          if(deg === null) {
+            carouselCells[nextCell].style["transform"] = "rotateY(340deg) translateZ(50px)";
+            transformNext(nextCell + 1, 340 + 2);
+            // setTimeout(() => transformNext(nextCell + 1, 355), 200);
+            return
           }
-          const slider = document.getElementById('img-range');
-          if (currImgIndex === clipCounts[currClipIndex]) {
-            currImgIndex = 1;
-            slider.value = currImgIndex;
-          }
-
-          const canvas = document.getElementById('canvas');
-          const ctx = canvas.getContext('2d');
-
-          let fadeOut = false;
-
-          // Load next image index 
-          currImgIndex += 1;
-          // const img = createImg(currImgIndex);
-          // img.addEventListener('load', () => {
-          //   ctx.drawImage(img, 0, 0);
-          //   renderFrame();
-          // });
-
-          renderNextFrame();
+          console.log('deg', deg)
+          carouselCells[nextCell].style["transform"] = `rotateY(${deg}deg) translateZ(50px)`;
+          transformNext(nextCell + 1, deg + 2);
+          // setTimeout(() => transformNext(nextCell + 1, deg + 15), 200);
+        }
+        transformNext(0);
+        console.log('after reset',carouselCells)
+        // for(const cell of carouselCells) {
+        //   cell.classList.remove('unset-transition');
+        // }
       }
 
       function fadeTransition() {
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        console.log('fadeTransition create at', currImgIndex)
         const img = createImg(currImgIndex);
         return new Promise((res) => {
           img.addEventListener('load', () => {
@@ -333,7 +325,7 @@
         image.id = "halo-frame";
         image.className = "center-self";
         image.style = "width: 100%; height: 100%;"
-        image.src = `./assets/dance-frames-${currClipIndex}/frame_${currImgIndex}.jpg`;
+        image.src = `./assets/frames/frame${currImgIndex}.jpg`;
         return image;
       }
 
@@ -343,7 +335,7 @@
           image.id = "halo-frame";
           image.className = "center-self";
           image.style = "width: 100%; height: 100%;"
-          image.src = `./assets/dance-frames-${currClipIndex}/frame_${imgIndex}.jpg`;
+          image.src = `./assets/frames/frame${imgIndex}.jpg`;
           return res(image);
         })
       }
