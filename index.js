@@ -11,3 +11,8 @@ ejsRenderfile('./index.ejs', {})
   .then(index => {
     fs.writeFileSync(`${publicPath}/index.html`, index);
   })
+
+ejsRenderfile('./job.ejs', {})
+  .then(index => {
+    fs.writeFileSync(`${publicPath}/job.html`, index);
+  })
