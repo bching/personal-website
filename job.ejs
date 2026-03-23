@@ -1,5 +1,263 @@
-<div class="middle-col">
-  <div class="back">
-    <a href="./assets/data/boyd-ching-resume-2019.pdf">Here's my resume</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    color: #444;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    padding: 52px 56px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 30px; }
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 26pt;
+    font-weight: 400;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .meta {
+    font-size: 8.5pt;
+    color: #999;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .meta a { color: #999; text-decoration: none; }
+  .meta a:hover { color: #555; }
+
+  hr { border: none; border-top: 1px solid #e8e8e8; margin-bottom: 28px; }
+
+  /* LAYOUT */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 175px;
+    gap: 44px;
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 26px; }
+  .section-title {
+    font-size: 7pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #bbb;
+    margin-bottom: 11px;
+  }
+
+  p { color: #555; font-size: 9pt; line-height: 1.7; }
+
+  /* LISTS */
+  ul { list-style: none; }
+  ul li {
+    padding: 2.5px 0 2.5px 14px;
+    position: relative;
+    color: #555;
+    font-size: 8.5pt;
+  }
+  ul li::before { content: '–'; position: absolute; left: 0; color: #ccc; }
+  ul strong { color: #333; font-weight: 500; }
+
+  /* JOB */
+  .job { margin-bottom: 20px; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1px;
+  }
+  .job-title { font-size: 9.5pt; font-weight: 500; color: #222; }
+  .job-dates { font-size: 8pt; color: #bbb; }
+  .job-company { font-size: 8.5pt; color: #999; margin-bottom: 7px; }
+  .tech { font-size: 7.5pt; color: #bbb; margin-top: 5px; }
+
+  /* SIDEBAR */
+  .sidebar-section { margin-bottom: 22px; }
+
+  .skill-group { margin-bottom: 9px; }
+  .skill-label { font-size: 7pt; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: #bbb; margin-bottom: 3px; }
+  .skill-list { font-size: 8.5pt; color: #666; line-height: 1.75; }
+
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 8.5pt;
+  }
+  .lang-name { color: #555; }
+  .lang-level { font-size: 7.5pt; color: #bbb; }
+
+  .edu-item { margin-bottom: 12px; }
+  .edu-degree { font-size: 8.5pt; font-weight: 500; color: #444; line-height: 1.4; }
+  .edu-school { font-size: 8pt; color: #999; margin-top: 2px; }
+  .edu-year { font-size: 7.5pt; color: #bbb; margin-top: 1px; }
+
+  .interests { font-size: 8.5pt; color: #aaa; line-height: 2; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Boyd Ching</h1>
+  <div class="meta">
+    <span>Tokyo, Japan</span>
+    <span>Senior Frontend Engineer</span>
+    <a href="https://github.com/bching">github.com/bching</a>
+    <a href="https://linkedin.com/in/boyd-ching">linkedin.com/in/boyd-ching</a>
   </div>
 </div>
+
+<hr>
+
+<div class="body">
+  <div class="main">
+
+    <div class="section">
+      <div class="section-title">Summary</div>
+      <p>Senior Frontend Engineer with 5+ years of experience building real-time dashboards and messaging systems for chatbot-driven e-commerce platforms. Experienced in frontend architecture, microfrontend systems, and complex UI state management. Comfortable working across the stack and collaborating in bilingual engineering environments in Japan.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Selected Achievements</div>
+      <ul>
+        <li>Built a <strong>real-time conversational commerce dashboard</strong> for chatbot marketing campaigns and messaging workflows.</li>
+        <li>Implemented <strong>concurrent multi-user editing interfaces</strong> and real-time UI updates for operational tools.</li>
+        <li>Contributed to <strong>microfrontend architecture using Nx</strong>, enabling modular feature development across teams.</li>
+        <li>Designed and implemented a <strong>chatbot messaging API</strong> using Node.js and Express.</li>
+        <li>Deployed production applications using <strong>Docker and AWS infrastructure</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Senior Frontend Engineer</span>
+          <span class="job-dates">Oct 2021 – Present</span>
+        </div>
+        <div class="job-company">ZEALS — Tokyo, Japan</div>
+        <ul>
+          <li>Developed and maintained a chatbot-driven e-commerce dashboard for campaigns, messaging flows, and analytics.</li>
+          <li>Implemented UI systems supporting <strong>concurrent multi-user edits and real-time messaging workflows</strong>.</li>
+          <li>Built analytics dashboards visualizing large-scale conversational commerce data.</li>
+          <li>Contributed to <strong>microfrontend architecture using Nx</strong> enabling modular development across teams.</li>
+          <li>Developed frontend applications using <strong>Vue, Vite, and TypeScript</strong>.</li>
+          <li>Facilitated engineering discussions and translated product epics into technical implementation tasks.</li>
+        </ul>
+        <div class="tech">Vue · TypeScript · Vite · Nx · Git</div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Software Developer</span>
+          <span class="job-dates">Feb 2019 – 2021</span>
+        </div>
+        <div class="job-company">AI2 — Tokyo, Japan</div>
+        <ul>
+          <li>Designed and developed frontend features for a chatbot management dashboard for enterprise clients.</li>
+          <li>Implemented a <strong>chatbot messaging API</strong> using Node.js and Express.</li>
+          <li>Developed automated <strong>end-to-end tests</strong> to improve platform reliability.</li>
+          <li>Deployed containerized applications using <strong>Docker and AWS Elastic Beanstalk</strong>.</li>
+          <li>Worked in a Japanese-language engineering environment supporting domestic clients.</li>
+        </ul>
+        <div class="tech">JavaScript · Node.js · React · Redux · Docker · AWS</div>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Assistant Language Teacher — JET Program</span>
+          <span class="job-dates">2017 – 2018</span>
+        </div>
+        <div class="job-company">Toyama, Japan</div>
+        <ul>
+          <li>Taught English at elementary and middle schools alongside Japanese teachers.</li>
+          <li>Led classroom lessons, cultural exchange activities, and community volunteering initiatives.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Open Source</div>
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Contributor — Oppia</span>
+          <span class="job-dates">2017</span>
+        </div>
+        <div class="job-company">Open Source Education Platform</div>
+        <ul>
+          <li>Improved screen reader accessibility for AngularJS components.</li>
+          <li>Refactored legacy frontend code and resolved UI issues.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="section-title">Skills</div>
+      <div class="skill-group">
+        <div class="skill-label">Languages</div>
+        <div class="skill-list">TypeScript, JavaScript, HTML5, CSS3</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Frontend</div>
+        <div class="skill-list">Vue, React, Vite, Nx, Redux</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">Backend</div>
+        <div class="skill-list">Node.js, Express, REST API</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-label">DevOps</div>
+        <div class="skill-list">Docker, AWS S3, Elastic Beanstalk, Git</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Education</div>
+      <div class="edu-item">
+        <div class="edu-degree">B.S. Computer Science</div>
+        <div class="edu-school">Univ. of Alaska Anchorage</div>
+        <div class="edu-year">2010 – 2016</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Student Exchange</div>
+        <div class="edu-school">Hokkaido Univ. of Education</div>
+        <div class="edu-year">2014 – 2015</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Languages</div>
+      <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">Native</span></div>
+      <div class="lang-item"><span class="lang-name">Japanese</span><span class="lang-level">Business</span></div>
+      <div class="lang-item"><span class="lang-name">Korean</span><span class="lang-level">Intermediate</span></div>
+      <div class="lang-item"><span class="lang-name">Thai</span><span class="lang-level">Learning</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-title">Interests</div>
+      <div class="interests">Breakdancing<br>Sourdough Baking<br>Coffee</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
